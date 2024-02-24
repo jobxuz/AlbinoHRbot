@@ -2,13 +2,19 @@ import asyncio
 
 from aiogram import types
 from aiogram.types import CallbackQuery
-
+from aiogram.types import ContentType
 from data.config import ADMINS
+from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.dispatcher import FSMContext
 from loader import dp, db, bot
 from keyboards.default.adminKey import adminusers,admincommands
 from keyboards.inline.inlinekey import rek
 from keyboards.default.userkey import boshmenu
+
+
+class Reklama(StatesGroup):
+    message = State()
+
 
 
 @dp.message_handler(text="/start", user_id=ADMINS)
@@ -44,32 +50,33 @@ async def back_button(message: types.Message):
     await message.answer('Bosh menyu',reply_markup=admincommands)
 
 
-
 @dp.message_handler(text="reklama",user_id=ADMINS)
-async def bot_start(message: types.Message, state: FSMContext):
+async def bot_start(message: types.Message):
     await message.answer("reklama yuboring")
-    await state.set_state("reklama")
+    await Reklama.message.set()
 
 
+@dp.message_handler(content_types=ContentType.ANY,state=Reklama.message)
+async def answer_fullname(message: types.Message, state: FSMContext):
+    habar = message.text
 
-@dp.message_handler(state='reklama')
-async def send_ad_to_all(message: types.Message,state: FSMContext):
-    await bot.send_message(chat_id=ADMINS[0],text=f"Habar to'g'rimi ‼️\n{message.text}",reply_markup=rek)
-    @dp.callback_query_handler(text="ha",state='reklama')
-    async def rek_ha(call: CallbackQuery):
-        users = db.select_all_users()
-        for user in users:
-            user_id = user[1]
-            await bot.send_message(chat_id=user_id, text=f"{message.text}")
+    await state.update_data(
+        {"habar": habar}
+    )
+    data = await state.get_data()
+    reklama = data.get("habar")
+
+    msg = reklama
+    users = db.select_all_users()
+    for user in users:
+        user_id = user[1]
+        try:
+            await message.send_copy(chat_id=user_id)
             await asyncio.sleep(0.05)
-        await bot.send_message(chat_id=ADMINS[0],text=f"Reklama yuborildi! ✅")
-        await state.finish()
-        await call.message.delete()
-    @dp.callback_query_handler(text="yuq",state='reklama')
-    async def rek_yuq(call: CallbackQuery):
-        await bot.send_message(chat_id=ADMINS[0],text="Reklama yuborilmadi! ❌")
-        await state.finish()
-        await call.message.delete()
+        except Exception as e:
+            await bot.send_message(chat_id=ADMINS[0],text=f"{e}")
+    await bot.send_message(chat_id=ADMINS[0],text=f"Reklama yuborildi! ✅")
+    await state.finish()
 
 
 
