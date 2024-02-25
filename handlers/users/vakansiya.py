@@ -1,8 +1,11 @@
 from aiogram import types
 from aiogram.dispatcher.filters.builtin import CommandStart
 from aiogram.types import CallbackQuery
+<<<<<<< HEAD
 from aiogram.types import InputFile
 import logging
+=======
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
 
 from data.config import ADMINS
 from loader import dp, db, bot
@@ -22,6 +25,7 @@ from handlers.users.hr import create_image_with_greeting
 
 
 
+<<<<<<< HEAD
 @dp.message_handler(text="🏢 Kompaniya haqida")
 async def kompaniya(message:types.Message):
     photo_file = InputFile(path_or_bytesio="C:/Users/HP/Desktop/hr_bot/handlers/users/file/imgs/kompaniya.jpg")
@@ -44,6 +48,17 @@ async def stateend(message:types.Message, state: FSMContext):
 
     await state.finish()
     await message.answer("Bosh menu",reply_markup=boshmenu)
+=======
+# @dp.message_handler(text="💼 Bo'sh ish o'rinlari")
+# async def vakansiya(message:types.Message):
+#     await message.answer("Kerakli bo'limni tanlang",reply_markup=buttins)
+
+
+
+@dp.message_handler(text="Bosh menu")
+async def vakansiya(message:types.Message):
+    await message.answer("Kerakli bo'limni tanlang",reply_markup=boshmenu)
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
     
 
 
@@ -115,7 +130,11 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"lavozim": lavozim}
     )
 
+<<<<<<< HEAD
     await message.answer("To'liq ismingizni yozing!",reply_markup=ReplyKeyboardRemove())
+=======
+    await message.answer("To'liq ismingizni yozing!")
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
 
     # await PersonalData.email.set()
     await Vakansiya.next()
@@ -157,7 +176,11 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"phon": phon}
     )
 
+<<<<<<< HEAD
     await message.answer("Yashash manzilingiz!",reply_markup=ReplyKeyboardRemove())
+=======
+    await message.answer("Yashash manzilingiz!")
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
 
     # await PersonalData.email.set()
     await Vakansiya.next()
@@ -202,7 +225,11 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"sudlangan": sudlangan}
     )
 
+<<<<<<< HEAD
     await message.answer("Rasm yuboring",reply_markup=ReplyKeyboardRemove())
+=======
+    await message.answer("Rasm yuboring")
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
 
     # await PersonalData.email.set()
     await Vakansiya.next()
@@ -269,8 +296,13 @@ async def answer_city(message: types.Message, state: FSMContext):
 
     #await bot.send_message(chat_id=1363350178,text=malumotlar)
 
+<<<<<<< HEAD
     img = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/imgs/{message.from_user.id}.jpg"
     file = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+=======
+    img = f"C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/imgs/{message.from_user.id}.jpg"
+    file = f"C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
     
     
     create_image_with_greeting(file,img,malumotlar)
@@ -284,7 +316,11 @@ async def yuborish(message: types.Message,state: FSMContext):
     if message.text == "Yuborish":
         await message.answer("Yuborildi!!!",reply_markup=boshmenu)
         await state.finish()
+<<<<<<< HEAD
         files = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+=======
+        files = f"C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+>>>>>>> 76bcd2fcd4b825b10a9835310a7eb6c8307d8811
         with open(files, "rb") as file:
         # Document jo'natish
             await bot.send_document(chat_id=message.from_user.id, document=file)
