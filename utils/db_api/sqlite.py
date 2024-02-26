@@ -77,7 +77,7 @@ class Database:
         sql = """
         INSERT INTO bolim(name) VALUES(?)
         """
-        self.execute(sql, parameters=(name), commit=True)
+        self.execute(sql, parameters=(name,), commit=True)
 
     def select_all_bolim(self):
         sql = """
