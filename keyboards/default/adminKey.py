@@ -21,8 +21,12 @@ adminusers = ReplyKeyboardMarkup(
             KeyboardButton(text="reklama"),
         ],
         [
+            KeyboardButton(text="bolim qoshish")
+        ],
+        [
             KeyboardButton(text="back")
         ],
     ],
     resize_keyboard=True
 )
+

@@ -71,6 +71,21 @@ class Database:
         self.execute("DELETE FROM Users WHERE TRUE", commit=True)
 
 
+    def add_bolim(self,name: str):
+        # SQL_EXAMPLE = "INSERT INTO Users(id, Name, email) VALUES(1, 'John', 'John@gmail.com')"
+
+        sql = """
+        INSERT INTO bolim(name) VALUES(?)
+        """
+        self.execute(sql, parameters=(name), commit=True)
+
+    def select_all_bolim(self):
+        sql = """
+        SELECT * FROM bolim
+        """
+        return self.execute(sql, fetchall=True)
+
+
 def logger(statement):
     pass
 #     print(f"""

@@ -15,6 +15,9 @@ from keyboards.default.userkey import boshmenu
 class Reklama(StatesGroup):
     message = State()
 
+class Bolim(StatesGroup):
+    message = State()
+
 
 
 @dp.message_handler(text="/start", user_id=ADMINS)
@@ -85,3 +88,30 @@ async def hr(message: types.Message):
 
     #await message.answer('admin panel',reply_markup=admincommands)
     await bot.send_message(chat_id=ADMINS[0],text='Siz adminsiz',reply_markup=boshmenu)
+
+
+@dp.message_handler(text="bolim qoshish", user_id=ADMINS)
+async def bolim(message: types.Message):
+
+    await message.answer("Bo'lim nomini yozing!")
+    await Bolim.message.set()
+
+
+@dp.message_handler(state=Bolim.message)
+async def bolimqoshish(message: types.Message,state: FSMContext):
+    habar = message.text
+
+    # await state.update_data(
+    #     {"habar": habar}
+    # )
+    # data = await state.get_data()
+    # name_bolim = data.get("habar")
+
+
+    db.add_bolim(name=habar)
+
+    bolimlar = db.select_all_bolim()
+
+    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+
+    await state.finish()
