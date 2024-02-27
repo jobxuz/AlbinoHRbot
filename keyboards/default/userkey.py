@@ -1,4 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton
+from loader import dp, db, bot
 
 
 boshmenu = ReplyKeyboardMarkup(
@@ -15,11 +16,12 @@ boshmenu = ReplyKeyboardMarkup(
 
 
 
-buttins = ["Ofis","Ombor","Do'kon"]
+#buttins = ["Ofis","Ombor","Do'kon"]
+#buttins = db.select_all_bolim()
 
 filial = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
-for buttin in buttins:
-    filial.insert(KeyboardButton(text=buttin))
+for buttin in db.select_all_bolim():
+    filial.insert(KeyboardButton(text=buttin[0]))
 filial.insert(KeyboardButton(text="Bosh menu"))
 
 

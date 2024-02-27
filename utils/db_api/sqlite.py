@@ -86,6 +86,36 @@ class Database:
         return self.execute(sql, fetchall=True)
 
 
+    def delete_bolim(self,name):
+        sql = f"""
+            DELETE FROM bolim WHERE name=?
+        """
+        return self.execute(sql, parameters=(name,), commit=True)
+    
+
+    def add_ofis(self,name: str):
+        # SQL_EXAMPLE = "INSERT INTO Users(id, Name, email) VALUES(1, 'John', 'John@gmail.com')"
+
+        sql = """
+        INSERT INTO ofis(name) VALUES(?)
+        """
+        self.execute(sql, parameters=(name,), commit=True)
+
+    def select_all_ofis(self):
+        sql = """
+        SELECT * FROM ofis
+        """
+        return self.execute(sql, fetchall=True)
+
+
+    def delete_ofis(self,name):
+        sql = f"""
+            DELETE FROM ofis WHERE name=?
+        """
+        return self.execute(sql, parameters=(name,), commit=True)
+
+
+
 def logger(statement):
     pass
 #     print(f"""

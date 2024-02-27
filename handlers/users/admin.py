@@ -18,6 +18,16 @@ class Reklama(StatesGroup):
 class Bolim(StatesGroup):
     message = State()
 
+class Bolim_delete(StatesGroup):
+    bolim = State()
+
+
+class Ofis(StatesGroup):
+    message = State()
+
+class Ofis_delete(StatesGroup):
+    bolim = State()
+
 
 
 @dp.message_handler(text="/start", user_id=ADMINS)
@@ -101,11 +111,6 @@ async def bolim(message: types.Message):
 async def bolimqoshish(message: types.Message,state: FSMContext):
     habar = message.text
 
-    # await state.update_data(
-    #     {"habar": habar}
-    # )
-    # data = await state.get_data()
-    # name_bolim = data.get("habar")
 
 
     db.add_bolim(name=habar)
@@ -115,3 +120,76 @@ async def bolimqoshish(message: types.Message,state: FSMContext):
     await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
 
     await state.finish()
+
+
+@dp.message_handler(text="delete bolim", user_id=ADMINS)
+async def bolim_delete(message: types.Message):
+
+    await message.answer("Bo'lim nomini yozing!")
+    await Bolim_delete.bolim.set()
+
+
+@dp.message_handler(state=Bolim_delete.bolim)
+async def bolimdelete(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.delete_bolim(name=habar)
+
+    bolimlar = db.select_all_bolim()
+
+    await message.answer(text=f"Bo'lim o'chirildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+
+
+
+
+@dp.message_handler(text="ofis qoshish", user_id=ADMINS)
+async def bolim(message: types.Message):
+
+    await message.answer("Bo'lim nomini yozing!")
+    await Ofis.message.set()
+
+
+@dp.message_handler(state=Ofis.message)
+async def ofisqoshish(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.add_ofis(name=habar)
+
+    bolimlar = db.select_all_ofis()
+
+    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+
+@dp.message_handler(text="delete ofis", user_id=ADMINS)
+async def ofis_delete(message: types.Message):
+
+    await message.answer("Ofis nomini yozing!")
+    await Ofis_delete.bolim.set()
+
+
+@dp.message_handler(state=Ofis_delete.bolim)
+async def bolimdelete(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.delete_ofis(name=habar)
+
+    bolimlar = db.select_all_ofis()
+
+    await message.answer(text=f"Ofis o'chirildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+
+
+

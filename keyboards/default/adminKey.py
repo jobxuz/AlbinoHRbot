@@ -21,7 +21,12 @@ adminusers = ReplyKeyboardMarkup(
             KeyboardButton(text="reklama"),
         ],
         [
-            KeyboardButton(text="bolim qoshish")
+            KeyboardButton(text="bolim qoshish"),
+            KeyboardButton(text="delete bolim")
+        ],
+        [
+            KeyboardButton(text="ofis qoshish"),
+            KeyboardButton(text="delete ofis")
         ],
         [
             KeyboardButton(text="back")
