@@ -1,5 +1,5 @@
 from aiogram.types import ReplyKeyboardMarkup,KeyboardButton
-from loader import dp, db, bot
+from loader import db
 
 
 boshmenu = ReplyKeyboardMarkup(
@@ -19,34 +19,47 @@ boshmenu = ReplyKeyboardMarkup(
 #buttins = ["Ofis","Ombor","Do'kon"]
 #buttins = db.select_all_bolim()
 
-filial = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
-for buttin in db.select_all_bolim():
-    filial.insert(KeyboardButton(text=buttin[0]))
-filial.insert(KeyboardButton(text="Bosh menu"))
+def bolim_Buttins():
+    filial = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
+    for buttin in db.select_all_bolim():
+        filial.insert(KeyboardButton(text=buttin[0]))
+    filial.insert(KeyboardButton(text="Bosh menu"))
+
+    return filial
 
 
-ofis = ["Hr","SMM","Kassir","Bugalter"]
-
-ofisButtin = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
-for x in ofis:
-    ofisButtin.insert(KeyboardButton(text=x))
-ofisButtin.insert(KeyboardButton(text="Bosh menu"))
+#ofis = ["Hr","SMM","Kassir","Bugalter"]
 
 
-ombor = ["Yuklovchi","Tayyorlovchi","Haydovchi"]
+def ofis_Buttins():
+    ofisButtin = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
+    for x in db.select_all_ofis():
+        ofisButtin.insert(KeyboardButton(text=x[0]))
+    ofisButtin.insert(KeyboardButton(text="Bosh menu"))
 
-omborButtin = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
-for x in ombor:
-    omborButtin.insert(KeyboardButton(text=x))
-omborButtin.insert(KeyboardButton(text="Bosh menu"))
+    return ofisButtin
 
 
-dokon = ["Sotuvchi"]
+#ombor = ["Yuklovchi","Tayyorlovchi","Haydovchi"]
 
-dokonbuttin = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
-for x in dokon:
-    dokonbuttin.insert(KeyboardButton(text=x))
-dokonbuttin.insert(KeyboardButton(text="Bosh menu"))
+def ombor_Buttins():
+    omborButtin = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
+    for x in db.select_all_ombor():
+        omborButtin.insert(KeyboardButton(text=x[0]))
+    omborButtin.insert(KeyboardButton(text="Bosh menu"))
+
+    return omborButtin
+
+
+#dokon = ["Sotuvchi"]
+
+def dokon_Buttins():
+    dokonbuttin = ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
+    for x in db.select_all_dokon():
+        dokonbuttin.insert(KeyboardButton(text=x[0]))
+    dokonbuttin.insert(KeyboardButton(text="Bosh menu"))
+
+    return dokonbuttin
 
 
 

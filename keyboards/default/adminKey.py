@@ -29,6 +29,14 @@ adminusers = ReplyKeyboardMarkup(
             KeyboardButton(text="delete ofis")
         ],
         [
+            KeyboardButton(text="ombor qoshish"),
+            KeyboardButton(text="delete ombor")
+        ],
+        [
+            KeyboardButton(text="dokon qoshish"),
+            KeyboardButton(text="delete dokon")
+        ],
+        [
             KeyboardButton(text="back")
         ],
     ],

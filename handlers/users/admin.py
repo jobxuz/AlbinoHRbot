@@ -29,6 +29,19 @@ class Ofis_delete(StatesGroup):
     bolim = State()
 
 
+class Ombor(StatesGroup):
+    message = State()
+
+class Ombor_delete(StatesGroup):
+    message = State()
+
+class Dokon(StatesGroup):
+    message = State()
+
+class Dokon_delete(StatesGroup):
+    message = State()
+
+
 
 @dp.message_handler(text="/start", user_id=ADMINS)
 async def get_all_users(message: types.Message):
@@ -190,6 +203,101 @@ async def bolimdelete(message: types.Message,state: FSMContext):
 
     await state.finish()
 
+#--------------------------------------------------------------------------------------#
 
+
+
+
+@dp.message_handler(text="ombor qoshish", user_id=ADMINS)
+async def ombor(message: types.Message):
+
+    await message.answer("Bo'lim nomini yozing!")
+    await Ombor.message.set()
+
+
+@dp.message_handler(state=Ombor.message)
+async def omborqoshish(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.add_ombor(name=habar)
+
+    bolimlar = db.select_all_ombor()
+
+    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+
+@dp.message_handler(text="delete ombor", user_id=ADMINS)
+async def ombor_delete(message: types.Message):
+
+    await message.answer("Ofis nomini yozing!")
+    await Ombor_delete.message.set()
+
+
+@dp.message_handler(state=Ombor_delete.message)
+async def bolimdelete(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.delete_ombor(name=habar)
+
+    bolimlar = db.select_all_ombor()
+
+    await message.answer(text=f"Ofis o'chirildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+#--------------------------------------------------------------------------------------#
+
+
+
+@dp.message_handler(text="dokon qoshish", user_id=ADMINS)
+async def dokon(message: types.Message):
+
+    await message.answer("Bo'lim nomini yozing!")
+    await Dokon.message.set()
+
+
+@dp.message_handler(state=Dokon.message)
+async def dokonqoshish(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.add_dokon(name=habar)
+
+    bolimlar = db.select_all_dokon()
+
+    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+
+@dp.message_handler(text="delete dokon", user_id=ADMINS)
+async def dokon_delete(message: types.Message):
+
+    await message.answer("Dokon nomini yozing!")
+    await Dokon_delete.message.set()
+
+
+@dp.message_handler(state=Dokon_delete.message)
+async def bolimdelete(message: types.Message,state: FSMContext):
+    habar = message.text
+
+
+
+    db.delete_dokon(name=habar)
+
+    bolimlar = db.select_all_dokon()
+
+    await message.answer(text=f"Dokon o'chirildi!!! \n {bolimlar}")
+
+    await state.finish()
+
+#--------------------------------------------------------------------------------------#
 
 

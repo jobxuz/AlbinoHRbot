@@ -7,7 +7,7 @@ import logging
 from data.config import ADMINS
 from loader import dp, db, bot
 from keyboards.inline.inlinekey import til,booksMenu
-from keyboards.default.userkey import boshmenu,filial
+from keyboards.default.userkey import boshmenu
 
 from aiogram.types import ReplyKeyboardRemove
 from reportlab.lib.utils import ImageReader
@@ -16,7 +16,7 @@ from aiogram.types import ContentType
 from aiogram.dispatcher.filters.state import StatesGroup, State
 from aiogram.dispatcher import FSMContext
 from keyboards.default.stateKey import studentkey,sogliqkey,phonkey,yuborishkey
-from keyboards.default.userkey import ofisButtin,omborButtin,dokonbuttin
+from keyboards.default.userkey import bolim_Buttins,ofis_Buttins,ombor_Buttins,dokon_Buttins
 
 from handlers.users.hr import create_image_with_greeting
 
@@ -66,7 +66,7 @@ class Vakansiya(StatesGroup):
 
 @dp.message_handler(text="💼 Bo'sh ish o'rinlari")
 async def startState(message: types.Message):
-    await message.answer("Bo'limni tanlang!",reply_markup=filial)
+    await message.answer("Bo'limni tanlang!",reply_markup=bolim_Buttins())
     await Vakansiya.bolim.set()
 
 
@@ -79,7 +79,7 @@ async def answer_city(message: types.Message, state: FSMContext):
             {"bolim": bolim}
         )
 
-        await message.answer("Lavozimni tanlang!",reply_markup=ofisButtin)
+        await message.answer("Lavozimni tanlang!",reply_markup=ofis_Buttins())
 
         await Vakansiya.next()
     elif message.text == "Ombor":
@@ -89,7 +89,7 @@ async def answer_city(message: types.Message, state: FSMContext):
             {"bolim": bolim}
         )
 
-        await message.answer("Lavozimni tanlang!",reply_markup=omborButtin)
+        await message.answer("Lavozimni tanlang!",reply_markup=ombor_Buttins())
 
         await Vakansiya.next()
     elif message.text == "Do'kon":
@@ -99,7 +99,7 @@ async def answer_city(message: types.Message, state: FSMContext):
             {"bolim": bolim}
         )
 
-        await message.answer("Lavozimni tanlang!",reply_markup=dokonbuttin)
+        await message.answer("Lavozimni tanlang!",reply_markup=dokon_Buttins())
 
         await Vakansiya.next()
     else:

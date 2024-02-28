@@ -113,6 +113,55 @@ class Database:
             DELETE FROM ofis WHERE name=?
         """
         return self.execute(sql, parameters=(name,), commit=True)
+    
+
+    #-------------------------------------------------------------------------------------------#
+
+    def add_ombor(self,name: str):
+        # SQL_EXAMPLE = "INSERT INTO Users(id, Name, email) VALUES(1, 'John', 'John@gmail.com')"
+
+        sql = """
+        INSERT INTO ombor(name) VALUES(?)
+        """
+        self.execute(sql, parameters=(name,), commit=True)
+
+    def select_all_ombor(self):
+        sql = """
+        SELECT * FROM ombor
+        """
+        return self.execute(sql, fetchall=True)
+
+
+    def delete_ombor(self,name):
+        sql = f"""
+            DELETE FROM ombor WHERE name=?
+        """
+        return self.execute(sql, parameters=(name,), commit=True)
+    
+
+    #-------------------------------------------------------------------------------------------#
+
+    def add_dokon(self,name: str):
+        # SQL_EXAMPLE = "INSERT INTO Users(id, Name, email) VALUES(1, 'John', 'John@gmail.com')"
+
+        sql = """
+        INSERT INTO dokon(name) VALUES(?)
+        """
+        self.execute(sql, parameters=(name,), commit=True)
+
+    def select_all_dokon(self):
+        sql = """
+        SELECT * FROM dokon
+        """
+        return self.execute(sql, fetchall=True)
+
+
+    def delete_dokon(self,name):
+        sql = f"""
+            DELETE FROM dokon WHERE name=?
+        """
+        return self.execute(sql, parameters=(name,), commit=True)
+
 
 
 
