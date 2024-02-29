@@ -103,7 +103,7 @@ async def answer_city(message: types.Message, state: FSMContext):
 
         await Vakansiya.next()
     else:
-        await message.answer("No'malum buyruq!")
+        await message.answer("Nomalum buyruq!")
 
 
 @dp.message_handler(state=Vakansiya.lavozim)
@@ -114,7 +114,7 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"lavozim": lavozim}
     )
 
-    await message.answer("To'liq ismingizni yozing!")
+    await message.answer("To'liq ismingizni yozing!",reply_markup=ReplyKeyboardRemove())
 
   
     await Vakansiya.next()
@@ -128,7 +128,7 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"name": name}
     )
 
-    await message.answer("To'g'ilgan yilingiz!\nMisol:07.07.1999")
+    await message.answer("To'g'ilgan yilingiz!  Misol:07.07.1999")
 
     await Vakansiya.next()
 
@@ -141,7 +141,7 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"date": date}
     )
 
-    await message.answer("Telefon nomer yuboring!",reply_markup=phonkey)
+    await message.answer("Telefon nomeringiz!",reply_markup=phonkey)
 
     # await PersonalData.email.set()
     await Vakansiya.next()
@@ -155,7 +155,7 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"phon": phon}
     )
 
-    await message.answer("Yashash manzilingiz!")
+    await message.answer("Yashash manzilingiz! Misol: Qashqadaryo viloyati",reply_markup=ReplyKeyboardRemove())
 
     # await PersonalData.email.set()
     await Vakansiya.next()
@@ -200,7 +200,7 @@ async def answer_city(message: types.Message, state: FSMContext):
         {"sudlangan": sudlangan}
     )
 
-    await message.answer("Rasm yuboring")
+    await message.answer("Shaxsiy rasmingizni yuboring!",reply_markup=ReplyKeyboardRemove())
 
     # await PersonalData.email.set()
     await Vakansiya.next()
@@ -219,7 +219,7 @@ async def answer_img(message: types.Message, state: FSMContext):
     # Rasmni faylga yuklash
         await bot.download_file(file_path, f"handlers/users/file/imgs/{message.from_user.id}.jpg")
         #await message.photo[-1].download()
-        await message.answer("Sog'ligingiz qanaqa!",reply_markup=sogliqkey)
+        await message.answer("Sog'ligingizda hammasi joyidam!",reply_markup=sogliqkey)
         await Vakansiya.next()
     else:
         await message.answer("Rasm yuboring!!")
@@ -267,8 +267,8 @@ async def answer_city(message: types.Message, state: FSMContext):
 
     #await bot.send_message(chat_id=1363350178,text=malumotlar)
 
-    img = f"C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/imgs/{message.from_user.id}.jpg"
-    file = f"C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+    img = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/imgs/{message.from_user.id}.jpg"
+    file = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
     
     
     create_image_with_greeting(file,img,malumotlar)
@@ -282,10 +282,13 @@ async def yuborish(message: types.Message,state: FSMContext):
     if message.text == "Yuborish":
         await message.answer("Yuborildi!!!",reply_markup=boshmenu)
         await state.finish()
-        files = f"C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+        files = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
         with open(files, "rb") as file:
         # Document jo'natish
             await bot.send_document(chat_id=message.from_user.id, document=file)
+        with open(files, "rb") as file:
+        # Document jo'natish
+            await bot.send_document(chat_id=ADMINS[0], document=file)
     elif message.text == "Rad etish":
         await message.answer("Rad etildi",reply_markup=boshmenu)
         await state.finish()

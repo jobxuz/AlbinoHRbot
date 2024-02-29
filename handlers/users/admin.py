@@ -128,9 +128,14 @@ async def bolimqoshish(message: types.Message,state: FSMContext):
 
     db.add_bolim(name=habar)
 
-    bolimlar = db.select_all_bolim()
+    #bolimlar = db.select_all_bolim()
 
-    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+    text  = f"Bo'lim qo'shildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_bolim():
+        text+=f"{id}) {i[0]}\n"
+        id=id+1
+    await message.answer(text)
 
     await state.finish()
 
@@ -150,9 +155,15 @@ async def bolimdelete(message: types.Message,state: FSMContext):
 
     db.delete_bolim(name=habar)
 
-    bolimlar = db.select_all_bolim()
+    #bolimlar = db.select_all_bolim()
 
-    await message.answer(text=f"Bo'lim o'chirildi!!! \n {bolimlar}")
+    text  = f"Bo'lim o'chirildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_bolim():
+        text+=f"{id}) {i[0]}\n"
+        id=id + 1
+    await message.answer(text)
+
 
     await state.finish()
 
@@ -175,9 +186,12 @@ async def ofisqoshish(message: types.Message,state: FSMContext):
 
     db.add_ofis(name=habar)
 
-    bolimlar = db.select_all_ofis()
-
-    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+    text  = f"Bo'lim qo'shildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_ofis():
+        text+=f"{id}) {i[0]}\n"
+        id=id+1
+    await message.answer(text)
 
     await state.finish()
 
@@ -197,9 +211,12 @@ async def bolimdelete(message: types.Message,state: FSMContext):
 
     db.delete_ofis(name=habar)
 
-    bolimlar = db.select_all_ofis()
-
-    await message.answer(text=f"Ofis o'chirildi!!! \n {bolimlar}")
+    text  = f"Bo'lim o'chirildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_ofis():
+        text+=f"{id}) {i[0]}\n"
+        id=id + 1
+    await message.answer(text)
 
     await state.finish()
 
@@ -223,9 +240,12 @@ async def omborqoshish(message: types.Message,state: FSMContext):
 
     db.add_ombor(name=habar)
 
-    bolimlar = db.select_all_ombor()
-
-    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+    text  = f"Bo'lim qo'shildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_ombor():
+        text+=f"{id}) {i[0]}\n"
+        id=id+1
+    await message.answer(text)
 
     await state.finish()
 
@@ -245,9 +265,12 @@ async def bolimdelete(message: types.Message,state: FSMContext):
 
     db.delete_ombor(name=habar)
 
-    bolimlar = db.select_all_ombor()
-
-    await message.answer(text=f"Ofis o'chirildi!!! \n {bolimlar}")
+    text  = f"Bo'lim o'chirildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_ombor():
+        text+=f"{id}) {i[0]}\n"
+        id=id + 1
+    await message.answer(text)
 
     await state.finish()
 
@@ -270,9 +293,12 @@ async def dokonqoshish(message: types.Message,state: FSMContext):
 
     db.add_dokon(name=habar)
 
-    bolimlar = db.select_all_dokon()
-
-    await message.answer(text=f"Bo'lim qo'shildi!!! \n {bolimlar}")
+    text  = f"Bo'lim qo'shildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_dokon():
+        text+=f"{id}) {i[0]}\n"
+        id=id+1
+    await message.answer(text)
 
     await state.finish()
 
@@ -292,9 +318,12 @@ async def bolimdelete(message: types.Message,state: FSMContext):
 
     db.delete_dokon(name=habar)
 
-    bolimlar = db.select_all_dokon()
-
-    await message.answer(text=f"Dokon o'chirildi!!! \n {bolimlar}")
+    text  = f"Bo'lim o'chirildi!  Mavjud bo'limlar:\n\n"
+    id = 1
+    for i in db.select_all_dokon():
+        text+=f"{id}) {i[0]}\n"
+        id=id+1
+    await message.answer(text)
 
     await state.finish()
 
