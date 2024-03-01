@@ -79,16 +79,16 @@ def create_image_with_greeting(file_path, image_path,data):
 
     boshlanish_s = 460
 
-    savollar = ["Bo'lim","Lavozim","Tug'ilgan yil","Manzil","Talaba","Sudlangan","Sog'liq"]
+    savollar = ["Bo'lim","Lavozim","Tug'ilgan yilingiz","Manzilingiz","Talabamisiz","Sudlanganmisiz","Sog'lig'ingiz"]
 
     javoblar = [data[0],data[1],data[3],data[5],data[6],data[7],data[8]]
 
 
     for savol in savollar:
         c.setFillColorRGB(0, 0, 0)  # kok rang
-        c.setFont("DejaVuSerif", 18)
+        c.setFont("DejaVuSerif", 14)
         c.drawString(110,boshlanish_s, savol)
-        boshlanish_s = boshlanish_s-30
+        boshlanish_s = boshlanish_s-20
         
 
 
@@ -96,9 +96,9 @@ def create_image_with_greeting(file_path, image_path,data):
 
     for javob in javoblar:
         c.setFillColorRGB(0, 0, 0)  # kok rang
-        c.setFont("DejaVuSerif", 18)
-        c.drawString(320,boshlanish_j, javob[:18])
-        boshlanish_j = boshlanish_j-30
+        c.setFont("DejaVuSerif", 14)
+        c.drawString(320,boshlanish_j, javob[:24])
+        boshlanish_j = boshlanish_j-20
         
 
     
