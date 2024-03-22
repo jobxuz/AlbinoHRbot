@@ -24,7 +24,7 @@ from handlers.users.hr import create_image_with_greeting
 
 @dp.message_handler(text="🏢 Kompaniya haqida")
 async def kompaniya(message:types.Message):
-    photo_file = InputFile(path_or_bytesio="C:/Users/User/Desktop/Albino_hr_bot/handlers/users/file/imgs/kompaniya.jpg")
+    photo_file = InputFile(path_or_bytesio="/home/container/handlers/users/file/imgs/kompaniya.jpg")
     await message.reply_photo(
         photo_file, caption="""Bizning kompaniyamiz 2009-yildan beri oshxona anjomlari va kichik
         turdagi maishiy texnikalar savdosi bilan xaridorlarga xizmat korsatib keladi.
@@ -267,8 +267,8 @@ async def answer_city(message: types.Message, state: FSMContext):
 
     #await bot.send_message(chat_id=1363350178,text=malumotlar)
 
-    img = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/imgs/{message.from_user.id}.jpg"
-    file = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+    img = f"/home/container/handlers/users/file/imgs/{message.from_user.id}.jpg"
+    file = f"/home/container/handlers/users/file/files/{message.from_user.id}.pdf"
     
     
     create_image_with_greeting(file,img,malumotlar)
@@ -282,7 +282,7 @@ async def yuborish(message: types.Message,state: FSMContext):
     if message.text == "Yuborish":
         await message.answer("Yuborildi!!!",reply_markup=boshmenu)
         await state.finish()
-        files = f"C:/Users/HP/Desktop/hr_bot/handlers/users/file/files/{message.from_user.id}.pdf"
+        files = f"C:/home/container/handlers/users/file/files/{message.from_user.id}.pdf"
         with open(files, "rb") as file:
         # Document jo'natish
             await bot.send_document(chat_id=message.from_user.id, document=file)
