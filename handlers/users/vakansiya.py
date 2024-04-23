@@ -268,7 +268,7 @@ async def answer_city(message: types.Message, state: FSMContext):
     #await bot.send_message(chat_id=1363350178,text=malumotlar)
 
     img = f"/root/AlbinoHRbot/handlers/users/file/imgs/{message.from_user.id}.jpg"
-    file = f"/home/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
+    file = f"/root/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
     
     
     create_image_with_greeting(file,img,malumotlar)
@@ -282,7 +282,7 @@ async def yuborish(message: types.Message,state: FSMContext):
     if message.text == "Yuborish":
         await message.answer("Yuborildi!!!",reply_markup=boshmenu)
         await state.finish()
-        files = f"C:/root/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
+        files = f"/root/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
         with open(files, "rb") as file:
         # Document jo'natish
             await bot.send_document(chat_id=message.from_user.id, document=file)
