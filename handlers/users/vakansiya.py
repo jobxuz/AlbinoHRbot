@@ -24,7 +24,7 @@ from handlers.users.hr import create_image_with_greeting
 
 @dp.message_handler(text="🏢 Kompaniya haqida")
 async def kompaniya(message:types.Message):
-    photo_file = InputFile(path_or_bytesio="/home/container/handlers/users/file/imgs/kompaniya.jpg")
+    photo_file = InputFile(path_or_bytesio="/root/AlbinoHRbot/handlers/users/file/imgs/kompaniya.jpg")
     await message.reply_photo(
         photo_file, caption="""Bizning kompaniyamiz 2009-yildan beri oshxona anjomlari va kichik
         turdagi maishiy texnikalar savdosi bilan xaridorlarga xizmat korsatib keladi.
@@ -267,8 +267,8 @@ async def answer_city(message: types.Message, state: FSMContext):
 
     #await bot.send_message(chat_id=1363350178,text=malumotlar)
 
-    img = f"/home/container/handlers/users/file/imgs/{message.from_user.id}.jpg"
-    file = f"/home/container/handlers/users/file/files/{message.from_user.id}.pdf"
+    img = f"/root/AlbinoHRbot/handlers/users/file/imgs/{message.from_user.id}.jpg"
+    file = f"/home/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
     
     
     create_image_with_greeting(file,img,malumotlar)
@@ -282,13 +282,16 @@ async def yuborish(message: types.Message,state: FSMContext):
     if message.text == "Yuborish":
         await message.answer("Yuborildi!!!",reply_markup=boshmenu)
         await state.finish()
-        files = f"C:/home/container/handlers/users/file/files/{message.from_user.id}.pdf"
+        files = f"C:/root/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
         with open(files, "rb") as file:
         # Document jo'natish
             await bot.send_document(chat_id=message.from_user.id, document=file)
         with open(files, "rb") as file:
         # Document jo'natish
             await bot.send_document(chat_id=ADMINS[0], document=file)
+        with open(files, "rb") as file:
+        # Document jo'natish
+            await bot.send_document(chat_id=ADMINS[1], document=file)
     elif message.text == "Rad etish":
         await message.answer("Rad etildi",reply_markup=boshmenu)
         await state.finish()

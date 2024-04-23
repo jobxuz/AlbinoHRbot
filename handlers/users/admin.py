@@ -47,7 +47,7 @@ class Dokon_delete(StatesGroup):
 async def get_all_users(message: types.Message):
 
     #await message.answer('admin panel',reply_markup=admincommands)
-    await bot.send_message(chat_id=ADMINS[0],text='Siz adminsiz',reply_markup=admincommands)
+    await bot.send_message(chat_id=message.from_user.id,text='Siz adminsiz',reply_markup=admincommands)
 
 
 
@@ -110,7 +110,7 @@ async def answer_fullname(message: types.Message, state: FSMContext):
 async def hr(message: types.Message):
 
     #await message.answer('admin panel',reply_markup=admincommands)
-    await bot.send_message(chat_id=ADMINS[0],text='Siz adminsiz',reply_markup=boshmenu)
+    await bot.send_message(chat_id=message.from_user.id,text='Siz adminsiz',reply_markup=boshmenu)
 
 
 @dp.message_handler(text="bolim qoshish", user_id=ADMINS)
