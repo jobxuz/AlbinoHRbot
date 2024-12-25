@@ -1,6 +1,6 @@
 import logging
 from aiogram.types import CallbackQuery
-from data.config import ADMINS
+#from data.config import ADMINS
 
 from loader import bot, dp, db
 from aiogram import types

@@ -21,20 +21,29 @@ adminusers = ReplyKeyboardMarkup(
             KeyboardButton(text="reklama"),
         ],
         [
-            KeyboardButton(text="bolim qoshish"),
-            KeyboardButton(text="delete bolim")
+            KeyboardButton(text="bo'lim qo'shish"),
+            KeyboardButton(text="delete bo'lim"),
+            KeyboardButton(text="mavjud bo'limlar")
         ],
         [
-            KeyboardButton(text="ofis qoshish"),
-            KeyboardButton(text="delete ofis")
+            KeyboardButton(text="ofis qo'shish"),
+            KeyboardButton(text="delete ofis"),
+            KeyboardButton(text="mavjud ofislar")
         ],
         [
-            KeyboardButton(text="ombor qoshish"),
-            KeyboardButton(text="delete ombor")
+            KeyboardButton(text="ombor qo'shish"),
+            KeyboardButton(text="delete ombor"),
+            KeyboardButton(text="mavjud omborlar")
         ],
         [
-            KeyboardButton(text="dokon qoshish"),
-            KeyboardButton(text="delete dokon")
+            KeyboardButton(text="do'kon qo'shish"),
+            KeyboardButton(text="delete do'kon"),
+            KeyboardButton(text="mavjud do'konlar")
+        ],
+        [
+            KeyboardButton(text="admin qo'shish"),
+            KeyboardButton(text="delete admin"),
+            KeyboardButton(text="mavjud adminlar")
         ],
         [
             KeyboardButton(text="back")

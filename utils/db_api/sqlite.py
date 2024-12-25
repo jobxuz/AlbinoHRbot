@@ -164,6 +164,40 @@ class Database:
 
 
 
+    def add_admin(self,name: str, admin_id: int):
+        # SQL_EXAMPLE = "INSERT INTO Users(id, Name, email) VALUES(1, 'John', 'John@gmail.com')"
+
+        sql = """
+        INSERT INTO admins(name, admin_id) VALUES(?, ?)
+        """
+        self.execute(sql, parameters=(name, admin_id), commit=True)
+
+    
+    def select_all_admin(self):
+        sql = """
+        SELECT * FROM admins
+        """
+        return self.execute(sql, fetchall=True)
+    
+
+
+    def select_all_admin_ids(self):
+        sql = """
+        SELECT admin_id FROM admins
+        """
+        # Ma'lumotlarni olamiz va faqat bitta ustun qiymatlarini qaytaramiz
+        rows = self.execute(sql, fetchall=True)
+        return [row[0] for row in rows]
+
+
+    def delete_admin(self,name):
+        sql = f"""
+            DELETE FROM admins WHERE name=?
+        """
+        return self.execute(sql, parameters=(name,), commit=True)
+
+
+
 
 def logger(statement):
     pass

@@ -4,7 +4,7 @@ from aiogram.types import CallbackQuery
 from aiogram.types import InputFile
 import logging
 
-from data.config import ADMINS
+#from data.config import ADMINS
 from loader import dp, db, bot
 from keyboards.inline.inlinekey import til,booksMenu
 from keyboards.default.userkey import boshmenu
@@ -21,10 +21,12 @@ from keyboards.default.userkey import bolim_Buttins,ofis_Buttins,ombor_Buttins,d
 from handlers.users.hr import create_image_with_greeting
 
 
+ADMINS = db.select_all_admin_ids()
+
 
 @dp.message_handler(text="🏢 Kompaniya haqida")
 async def kompaniya(message:types.Message):
-    photo_file = InputFile(path_or_bytesio="/root/AlbinoHRbot/handlers/users/file/imgs/kompaniya.jpg")
+    photo_file = InputFile(path_or_bytesio="D:/bot/AlbinoHRbot/handlers/users/file/imgs/kompaniya.jpg")
     await message.reply_photo(
         photo_file, caption="""Bizning kompaniyamiz 2009-yildan beri oshxona anjomlari va kichik
         turdagi maishiy texnikalar savdosi bilan xaridorlarga xizmat korsatib keladi.
@@ -267,8 +269,8 @@ async def answer_city(message: types.Message, state: FSMContext):
 
     #await bot.send_message(chat_id=1363350178,text=malumotlar)
 
-    img = f"/root/AlbinoHRbot/handlers/users/file/imgs/{message.from_user.id}.jpg"
-    file = f"/root/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
+    img = f"D:/bot/AlbinoHRbot/handlers/users/file/imgs/{message.from_user.id}.jpg"
+    file = f"D:/bot/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
     
     
     create_image_with_greeting(file,img,malumotlar)
@@ -282,16 +284,12 @@ async def yuborish(message: types.Message,state: FSMContext):
     if message.text == "Yuborish":
         await message.answer("Yuborildi!!!",reply_markup=boshmenu)
         await state.finish()
-        files = f"/root/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
+        files = f"D:/bot/AlbinoHRbot/handlers/users/file/files/{message.from_user.id}.pdf"
         with open(files, "rb") as file:
-        # Document jo'natish
             await bot.send_document(chat_id=message.from_user.id, document=file)
         with open(files, "rb") as file:
-        # Document jo'natish
-            await bot.send_document(chat_id=ADMINS[0], document=file)
-        with open(files, "rb") as file:
-        # Document jo'natish
-            await bot.send_document(chat_id=ADMINS[1], document=file)
+            for admin in ADMINS:
+                await bot.send_document(chat_id=admin, document=file)
     elif message.text == "Rad etish":
         await message.answer("Rad etildi",reply_markup=boshmenu)
         await state.finish()
